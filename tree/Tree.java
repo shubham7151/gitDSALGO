@@ -35,6 +35,58 @@ public class Tree {
             }
         }
 
+        public Node delete(Node node, int data){
+            if(node == null){
+                return node;
+            }
+            if(node.data < data){
+                node.right  = delete(node.right, data);
+            }else if(node.data > data){
+                node.left = delete(node.left, data);
+            }else {
+                    //no child
+                    if(node.left==null){
+                        return node.right;
+                    }else if(node.right ==  null){
+                        return node.left;
+                    }
+                    // two child => return inorder successor 
+                    node.data = minValue(node.right);
+                    
+                    node.right = delete(node.right, node.data);
+            }
+
+            return node;
+        }
+
+
+        public int minValue(Node root){
+            int minValue = root.data;
+            while(root.left!=null){
+                minValue = root.left.data;
+                root=root.left;
+            }
+            return minValue;
+        }
+
+
+
+        public boolean searchValueInBST(Node node, int key){
+            if(node.data == key){
+                return true;
+            }else if(node.data < key){
+                if(node.right!=null) return searchValueInBST(node.right, key);
+                else return false;
+            }else{
+                if(node.left!=null) return searchValueInBST(node.left, key);
+                else return false;
+            }
+        }
+
+        public boolean search(int key){
+            return searchValueInBST(this.root, key);
+        }
+
         public void inOrderTraversal(Node node) {
             if (node != null) {
                 inOrderTraversal(node.left);
@@ -82,11 +134,11 @@ public class Tree {
         }
 
         public void printTree(String order){
-            if(order.equals("Inorder")){
+            if(order.equals("IN")){
                 inOrderTraversal(root);
-            }else if(order.equals("preOrder")){
+            }else if(order.equals("PRE")){
                 preOrderTraversal(root);
-            }else if(order.equals("postOrder")){
+            }else if(order.equals("POST")){
                 postOrderTraversal(root);
             }else if(order.equals("BFS")){
                 breathFirstSearch(root);
@@ -97,12 +149,18 @@ public class Tree {
     public static void main(String[] args) {
         
         Tree tree = new Tree();
-        tree.insert(8);
-        tree.insert(7);
-        tree.insert(12);
-        tree.insert(15);
-        tree.insert(2);
-        tree.insert(5);
-        tree.printTree("BFS");
+        tree.insert(50);
+        tree.insert(30);
+        tree.insert(20);
+        tree.insert(40);
+        tree.insert(70);
+        tree.insert(60);
+        tree.insert(80);
+        // tree.printTree("IN");
+
+        System.out.println("If exist : - "+tree.search(70));
+        tree.root = tree.delete(tree.root, 70);
+        System.out.println("If exist : - "+tree.search(70));
+        // tree.inOrderTraversal(tree.root);   
     }
 }
