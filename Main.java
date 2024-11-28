@@ -979,38 +979,83 @@ public class Main {
 //    }
 
     /* Search insert position*/
-    public static int searchInsert(int[] nums, int target) {
-            int start = 0;
-            int end = nums.length-1;
+    // public static int searchInsert(int[] nums, int target) {
+    //         int start = 0;
+    //         int end = nums.length-1;
 
-            Boolean found = false;
-            if(target > nums[end]){
-                return nums.length;
+    //         Boolean found = false;
+    //         if(target > nums[end]){
+    //             return nums.length;
+    //         }
+    //         if(target < nums[start]){
+    //             return start;
+    //         }
+    //         int mid =0;
+    //         while(start < end){
+    //             mid = start+end / 2;
+    //             if(nums[mid] == target){
+    //                 System.out.println("Fond");
+    //                 return mid;
+    //             }else if(nums[mid] < target){
+    //                 start = mid;
+    //             }else {
+    //                 end = mid-1;
+    //             }
+
+    //             System.out.println("mm"+mid);
+    //         }
+    //         return mid;
+    //     }
+
+    /*
+     * [4,5,6,7,0,1,2]
+     * left =0; right =6
+     * while(left<right){
+     * mid = left + (right-left)/2;
+     * if(mid == target){
+     * return mid; 
+     * }
+     * if(target < mid){
+     *  left = mid+1;
+     * }else{
+     *  right = mid+1;
+     * }
+     * }
+     */
+    public static boolean search(int[] nums, int target) {
+        // lower and upper bounds
+        int low = 0;
+        int high = nums.length-1;
+        //loop through the array
+        while(low<=high){
+            //find mid
+            int mid = low + (high-low)/2;
+            if(nums[mid] == target){
+                return true;
             }
-            if(target < nums[start]){
-                return start;
-            }
-            int mid =0;
-            while(start < end){
-                mid = start+end / 2;
-                if(nums[mid] == target){
-                    System.out.println("Fond");
-                    return mid;
-                }else if(nums[mid] < target){
-                    start = mid;
+            //check for sorted section
+            if(nums[low] <= nums[mid]){
+                // if it exist in sorted setion
+                if(nums[low] <= target && target <= nums[mid]){
+                    high = mid -1;
                 }else {
-                    end = mid-1;
+                    low = mid +1;
                 }
-
-                System.out.println("mm"+mid);
+            }else {
+                if(nums[mid] <= target && target <= nums[high]){
+                    low = mid+1;
+                }else {
+                    high = mid-1;
+                }
             }
-            return mid;
+               
         }
+        return false;
+    }
     public static void main(String args[]){
-        int[] nums = {1,3,5,6};
-        int key = 5;
-        int out = searchInsert(nums,key);
-        System.out.println(out);
+        int[] num = {1,0,1,1,1};
+
+        System.out.println(search(num, 0));
 
     }
 }
