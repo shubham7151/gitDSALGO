@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C88 {
+public class L88 {
     
 
     /*

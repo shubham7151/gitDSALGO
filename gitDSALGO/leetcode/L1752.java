@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C1752 {
+public class L1752 {
     
     /*
      * Check if Array Is Sorted and Rotated

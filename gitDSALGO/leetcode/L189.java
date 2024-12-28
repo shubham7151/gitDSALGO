@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C189 {
+public class L189 {
     
     /*
      * Rotate Array 

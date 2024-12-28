@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C26 {
+public class L26 {
 
     /*
      * Remove the duplicate from sorted Array

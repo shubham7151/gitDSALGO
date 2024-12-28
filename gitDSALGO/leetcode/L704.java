@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C704 {
+public class L704 {
     
     /*
      * Binary Search

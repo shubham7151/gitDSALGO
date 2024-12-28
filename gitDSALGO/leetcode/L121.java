@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C121 {
+public class L121 {
 
     /*
      * Best Time to Buy and Sell Stock

@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C1838 {
+public class L1838 {
 
     /*
      * Frequency of the most frequent element..

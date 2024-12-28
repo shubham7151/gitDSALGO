@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class C283 {
+public class L283 {
     
     /*
      * Moves Zeros
