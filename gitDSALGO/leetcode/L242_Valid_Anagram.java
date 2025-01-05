@@ -2,7 +2,7 @@ package gitDSALGO.leetcode;
 
 import java.util.HashMap;
 
-public class L242 {
+public class L242_Valid_Anagram {
     
     /*
      * Valid Anagram
