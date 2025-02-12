@@ -37,7 +37,7 @@ public class Binary_Tree {
                 stack.push(curr);
                 curr= curr.left;
             }
-
+            
             // process element then move right by taking it from stack
             curr = stack.pop();
             System.out.println("->"+curr.data);

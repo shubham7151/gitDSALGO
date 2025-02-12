@@ -1,6 +1,6 @@
-package gitDSALGO.Stack;
+package gitDSALGO.Stack.BasicImpl;
 
-import gitDSALGO.Stack.Stack;
+import gitDSALGO.Stack.BasicImpl.*;
 
 public class StackImpl implements Stack{
 

@@ -23,5 +23,15 @@ public class DirectedGraph implements GeneralGraph{
         
     }
 
+    @Override
+    public void display(){
+        for( int i = 0; i< adjMatrix.length;i++){
+            for( int j = 0; j<adjMatrix[i].length;j++){
+                System.out.print(adjMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 
 }

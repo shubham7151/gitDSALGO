@@ -24,5 +24,5 @@ If n = 7 and k = 3, then the safe position is 4. The persons at positions 3, 6, 
             j = temp;
         }
         return ls.get(0);
-    }
+    }z
 }

@@ -34,38 +34,40 @@ public class TrainMap {
     }
 
     List<Station> shortestPath(final String from, final String to) {
-    	List<Station> shortestPath = new ArrayList<>();
+    	Queue<Station> q = new LinkedList<>();
+        HashMap<Station, Station> parentStation = new HashMap<>();
 
-        Station start = stations.get(from);
-        Station end = stations.get(to);
+        //get both station
+        Station  start = getStation(from);
+        Station end = getStation(to);
 
-        Queue<Station> q = new LinkedList<>();
-        HashMap<Station, Station> prev = new HashMap<>();
-        
         q.add(start);
-        prev.put(start, null);
+        parentStation.put(start, null);
 
         while(!q.isEmpty()){
             Station curr = q.poll();
-            if(curr == end){
+
+            if(curr.equals(end)){
                 break;
             }
-            for(Station st : curr.getNeighbours()){
-                if(!prev.containsKey(st)){
-                    q.add(st);
-                    prev.put(st, curr);
+
+            for(Station xyz : curr.getNeighbours()){
+                if(!parentStation.containsKey(xyz)){
+                    q.add(xyz);
+                    parentStation.put(xyz, curr);
                 }
             }
         }
+
+        List<Station> output = new ArrayList<>();
         Station curr = end;
-        // shortestPath.add(curr);
         while(curr!=null){
-            shortestPath.add(curr);
-            curr = prev.get(curr);
+            output.add(curr);
+            curr= parentStation.get(curr);
         }
-        Collections.reverse(shortestPath);
-        // System.out.println(shortestPath);
-        return shortestPath;
+
+        Collections.reverse(output);
+        return output;
     }
    
     public static void main(String[] args) {

@@ -1,6 +1,5 @@
-package gitDSALGO.Stack;
+package gitDSALGO.Stack.BasicImpl;
 
-import gitDSALGO.Stack.*;
 public class StackMain {
     
     public static void main(String[] args)  {

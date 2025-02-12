@@ -1,4 +1,5 @@
 import java.util.*;
+import gitDSALGO.linkedList.SinglyLinkedList.*;;
 public class Main {
     /* box pattern */ 
     /*
@@ -1022,40 +1023,522 @@ public class Main {
      * }
      * }
      */
-    public static boolean search(int[] nums, int target) {
-        // lower and upper bounds
-        int low = 0;
-        int high = nums.length-1;
-        //loop through the array
-        while(low<=high){
-            //find mid
-            int mid = low + (high-low)/2;
-            if(nums[mid] == target){
-                return true;
-            }
-            //check for sorted section
-            if(nums[low] <= nums[mid]){
-                // if it exist in sorted setion
-                if(nums[low] <= target && target <= nums[mid]){
-                    high = mid -1;
-                }else {
-                    low = mid +1;
-                }
-            }else {
-                if(nums[mid] <= target && target <= nums[high]){
-                    low = mid+1;
-                }else {
-                    high = mid-1;
-                }
-            }
-               
+    // public static boolean search(int[] nums, int target) {
+    //     // lower and upper bounds
+    //     int low = 0;
+    //     int high = nums.length-1;
+    //     //loop through the array
+    //     while(low<=high){
+    //         //find mid
+    //         int mid = low + (high-low)/2;
+    //         if(nums[mid] == target){
+    //             return true;
+    //         }
+    //         //check for sorted section
+    //         if(nums[low] <= nums[mid]){
+    //             // if it exist in sorted setion
+    //             if(nums[low] <= target && target <= nums[mid]){
+    //                 high = mid -1;
+    //             }else {
+    //                 low = mid +1;
+    //             }
+    //         }else {
+    //             if(nums[mid] <= target && target <= nums[high]){
+    //                 low = mid+1;
+    //             }else {
+    //                 high = mid-1;
+    //             }
+    //         }
+        
+    //     }
+    //     return false;
+    // }
+    /*
+     * Find the best avg grade of a student 
+     * // Input :  [{"Bob","87"}, {"Mike", "35"},{"Bob", "52"}, {"Jason","35"}, {"Mike", "55"}, {"Jessica", "99"}]
+     * // Output : 99 
+     */
+
+
+
+    // public static int bestAverage(String[][] input){
+    //     HashMap<String, ArrayList<Integer>> hs = new HashMap<>();
+    //     for( int i = 0; i<input.length;i++){
+    //         String std = input[i][0];
+    //         int score = Integer.parseInt(input[i][1]);
+    //         if(hs.containsKey(std)){
+    //             hs.get(std).add(score);
+    //         }else{
+    //             ArrayList<Integer> temp = new ArrayList<>();
+    //             temp.add(score);
+    //             hs.put(std, temp);
+    //         }
+    //     }
+    //     int max = 0;
+    //         ArrayList<Integer> avgScore = new ArrayList<>();
+    //         for(Map.Entry<String, ArrayList<Integer>> temp : hs.entrySet()){
+    //             int sum =0;
+    //             for(int s : temp.getValue()){
+    //                 sum+=s;
+    //             }
+    //             int avg = sum/temp.getValue().size();
+    //             avgScore.add(avg);
+    //         }
+
+    //         for(int s : avgScore){
+    //             if(s > max){
+    //                 max = s; 
+    //             }
+    //         }
+    //         return max;
+    // }
+
+    /*
+     * In computer science and mathematics, the Josephus Problem (or Josephus permutation) is a theoretical problem. Following is the problem statement:  
+There are n people standing in a circle waiting to be executed. The counting out begins at some point in the circle and proceeds around the circle in a fixed direction. In each step, a certain number of people are skipped and the next person is executed. The elimination proceeds around the circle (which is becoming smaller and smaller as the executed people are removed), until only the last person remains, who is given freedom. Given the total number of person n and a number k which indicates that k-1 persons are skipped and the kth person is killed in a circle. The task is to choose the place in the initial circle so that you are the last one remaining and so survive. 
+For example, if n = 5 and k = 2, then the safe position is 3. Firstly, the person at position 2 is killed, then the person at position 4 is killed, then the person at position 1 is killed. Finally, the person at pos	ition 5 is killed. So the person at position 3 survives.  
+If n = 7 and k = 3, then the safe position is 4. The persons at positions 3, 6, 2, 7, 5, and 1 are killed in order, and the person at position 4 survives. 
+     */
+
+    // public static int josephus(int n, int k){
+    //     ArrayList<Integer> st = new ArrayList<>();
+    //     for( int i = 1;i<=n;i++){
+    //         st.add(i);
+    //     }
+    //     int i = 0;
+    //     while(st.size()!=1){
+    //         st.remove((i+k-1) % st.size());
+    //         i++;
+    //     }
+    //     return st.get(0);
+    // }
+    /*
+     *     24. Return the highest substring length and index value. 
+            1. EX: AAABBBBBBBBCCVV
+            2. Output: B 8 index as well
+     */
+
+    // public static String higheString(String s){
+    //     int l=0,r=1,max=0,len=0,start=0,end=0;
+    //     char ch = s.charAt(l); 
+    //     while(r<s.length()){
+    //         if(s.charAt(r)!= s.charAt(r-1)){
+    //             len = r-l;
+    //             if(len> max){
+    //                 max = len;
+    //                 ch = s.charAt(r-1);
+    //                 start = l;
+    //                 end = r-1;
+    //             }
+    //             l=r;
+    //         }
+    //         r++;
+    //     }
+
+    //     len = r-l;
+    //     if(len> max){
+    //         max = len;
+    //         ch = s.charAt(r-1);
+    //         start = l;
+    //         end = r-1;
+    //     }
+
+    //     return ""+ ch + "->" + max+ "->" + start +" ->" + end;
+        
+    // }
+
+    /*
+     * Array Rotation 
+     * Left rotate
+     * 
+     */
+
+    public static List<Integer> rotateLeft(int[] arr, int k){
+        List<Integer> res = new ArrayList<>();
+        for( int j = 0; j<k%arr.length;j++){
+        int temp = arr[0];
+        for( int i =1;i<arr.length;i++){
+            arr[i-1] = arr[i];
         }
-        return false;
+        arr[arr.length-1]= temp;
     }
+        for(int i : arr){
+            res.add(i);
+        }
+        return res;
+    } 
+
+    public static List<Integer> reverseRotateLeft(int[] arr, int k){
+        List<Integer> res = new ArrayList<>();
+        reverse(arr, 0, k-1);
+        reverse(arr, k, arr.length-1);
+        reverse(arr,0,arr.length-1);
+        for(int i : arr){
+        res.add(i);
+        }
+
+        return res;
+    }
+    public static void reverse(int[] a, int start, int end){
+        int i = start;
+        int j = end;
+        while(i<=j){
+            int temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    /*
+     * Array rotation 
+     * Right rotate
+     */
+    public static List<Integer> rotateRight(int[] arr, int k){
+        List<Integer> res = new ArrayList<>();
+        for( int j = 0 ; j<k%arr.length;j++){
+        int temp = arr[arr.length-1];
+        for( int i = arr.length-1;i>0; i--){
+            arr[i] = arr[i-1];
+        }
+        arr[0] = temp;
+    }
+        for(int i : arr){
+            res.add(i);
+        }
+        return res;
+    }
+
+    public static List<Integer> reverseRotateRight(int[] arr, int k){
+        List<Integer> res = new ArrayList<>();
+        reverseI(arr, 0, arr.length-1);
+        reverseI(arr, 0, k-1);
+        reverseI(arr, k, arr.length-1);
+
+        for( int i : arr){
+            res.add(i);
+        }
+
+        return res;
+    }
+
+    public static void reverseI(int[]a,int start, int end){
+        while(start<=end){
+            int temp = a[start];
+            a[start]= a[end];
+            a[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    /*
+     * Balanced Bracket
+     * "{[()]}","[{})","[",")"
+     */
+
+    public static boolean banacedBracket(String s){
+        Stack<Character> st = new Stack<>();
+        for(int i =0; i<s.length();i++){
+            if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '['){
+                st.push(s.charAt(i));
+            }else{
+                if(!st.isEmpty() && (s.charAt(i) == ')' || s.charAt(i) == '}' || s.charAt(i) == ']')){
+                    char temp = st.pop();
+                    if((temp == '{' && s.charAt(i) != '}') ||
+                    (temp == '(' && s.charAt(i) != ')') ||
+                    (temp == '[' && s.charAt(i) != ']') ){
+                        return false;
+                    }
+                }else{
+                    return false;
+                }
+            }
+        }
+        return st.isEmpty() ? true : false;
+    }
+
+    /*
+     * LinkedLink reversal
+     */
+
+    // public static void linkedListReversal(Node head){
+    //     Node curr = head;
+    //     Node prev = null;
+    //     while(curr!=null){
+    //         Node temp = curr.next;
+    //         curr.next = prev;
+    //         prev = curr;
+    //         curr= temp;
+
+    //     }
+
+    //     return prev;
+    // }
+
+    /*
+     * First repeating character
+    Description: Identify the first character in a string that repeats.
+    Constraints:
+    Input string contains only lowercase English letters.
+    Return the first repeated character in order of appearance, or '0' if there are no repeating characters.
+
+     */
+    public static char firstRepeatingCharacter(String s){
+        HashSet<Character> hs = new HashSet<>();
+
+        for( int i =0; i<s.length();i++){
+            if(hs.contains(s.charAt(i))){
+                return s.charAt(i);
+            }
+            hs.add(s.charAt(i));
+        }
+        return '0';
+    }
+    /*
+     *  Repeating Substring of Minimum Length
+        Description: Find the smallest substring of a string that, when repeated, forms the entire string.
+     */
+
+    public static String subStringMinimumLength(String s){
+        
+        for( int i = 1; i<s.length()/2;i++){
+            String subStr = s.substring(0, i);
+            StringBuilder sb = new StringBuilder();
+            // repreate check
+
+            for( int j = 0; j < s.length()/i; j++){
+                sb.append(subStr);
+                if(sb.toString().equals(s)){
+                    return subStr;
+                }
+            }
+           
+        }
+
+        return s;
+    }
+
+    /*
+     * Palindrome 
+     * check if string is palindrome
+     */
+
+    public static boolean isPalindrome(String s){
+        // StringBuilder sb = new StringBuilder();
+        // for(int i = s.length()-1; i>=0;i--){
+        //     sb.append(s.charAt(i));
+        // }
+        // return sb.toString().equals(s) ? true : false;
+        int i = 0;
+        int j = s.length()-1;
+        while(i<j){
+            if(s.charAt(i) != s.charAt(j)){
+                return false;
+            }
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+
+    /*
+     * Fibonacci
+     * print nth team;
+     */
+    public static int fab(int n){
+        int first = 0;
+        int sec = 1;
+        int res = 0;
+        for( int i=0; i<n-2;i++){
+            res = first+sec;
+            first = sec;
+            sec = res;
+        } 
+
+        return res;
+    }
+
+    /*
+     * Longest sumarray with  sum k
+     */
+
+    public static int longestSubArrayWithSumK(int[] arr, int k){
+        int i = 0;
+        int j = 0; 
+        int max = 0;
+        int sum= 0;
+        while(j<arr.length){
+            sum+=arr[j];
+            if(sum<=k){
+                max = Math.max(max, j-i+1);
+            }else{
+                i=j;
+                sum= 0;
+            }
+            j++;
+            // System.out.println(max);
+        }
+        
+        return max;
+    }
+    
+
+    /*
+     * ++++++++++++++++++++++++++++++++++++++++++++++++++
+     */
+
+    /*
+     * In computer science and mathematics, the Josephus Problem (or Josephus permutation) is a theoretical problem. Following is the problem statement:  
+There are n people standing in a circle waiting to be executed. The counting out begins at some point in the circle and proceeds around the circle in a fixed direction. In each step, a certain number of people are skipped and the next person is executed. The elimination proceeds around the circle (which is becoming smaller and smaller as the executed people are removed), until only the last person remains, who is given freedom. Given the total number of person n and a number k which indicates that k-1 persons are skipped and the kth person is killed in a circle. The task is to choose the place in the initial circle so that you are the last one remaining and so survive. 
+For example, if n = 5 and k = 2, then the safe position is 3. Firstly, the person at position 2 is killed, then the person at position 4 is killed, then the person at position 1 is killed. Finally, the person at pos	ition 5 is killed. So the person at position 3 survives.  
+If n = 7 and k = 3, then the safe position is 4. The persons at positions 3, 6, 2, 7, 5, and 1 are killed in order, and the person at position 4 survives. 
+     */
+
+    public static int josephusProblem(int n, int k){
+        ArrayList<Integer> arr = new ArrayList<>();
+        for( int i =0; i<n; i++){
+            arr.add(i+1);
+        }
+
+        //
+
+        // 12345
+        // 1345
+        // 134
+        //
+        int j = 0;
+        while(arr.size()!=1){
+            int temp = 
+            arr.remove((j+k-1)%arr.size());
+            j =  j+k-1;
+        }
+
+        return arr.get(0);
+    }
+
+
+    /*
+     * Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C/C++'s atoi function). 
+Read in and ignore any leadin	g whitespace. Check if the next character (if not already at the end of the string) is '-' or '+'. Read this character in if it is either. This determines if the final result is negative or positive respectively. Assume the result is positive if neither is present. Read in next the characters until the next non-digit character or the end of the input is reached. The rest of the string is ignored. Convert these digits into an integer (i.e. "123" -> 123, "0032" -> 32). If no digits were read, then the integer is 0. Change the sign as necessary (from step 2). If the integer is out of the 32-bit signed integer range [-231, 231 - 1], then clamp the integer so that it remains in the range. Specifically, integers less than -231 should be clamped to -231, and integers greater than 231 - 1 should be clamped to 231 - 1. Return the integer as the final result.
+     */
+
+    public static int myAtoi(String s){
+        s = s.trim();
+        // check for positioiivfe
+        int i =0;
+        if(s.length()==0){
+            return 0;
+        }
+        boolean isPositive = true;
+        // "-42"
+        if(s.charAt(i) == '-'){
+            isPositive = false;
+            i++;
+        }else if(s.charAt(i) == '+'){
+            //"+42"
+            i++;
+        }
+        //+42
+        //9999999999999+4 > 2^31; -99999999999999 < -2^31 -1
+
+        int res = 0;
+        while(i<s.length()-1 && Character.isDigit(s.charAt(i))){
+            int digit = s.charAt(i) - '0';
+
+            if(res > (Integer.MAX_VALUE - digit)/ 10){
+                return isPositive ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            res = res *10 + digit;
+            i++;
+        }
+        return res;
+    }
+
+    // public static double midea(int[] n ,  int[]m ){
+    //     //array of size ,m+n;
+    //     //iter both and add the smaller index to m+n; 
+    //     // will add left over to the new arr
+    //     // sorted array with n + m elements
+    //     // check lean of new arrya  if %2 == 0 
+    //     // mid and mid-1
+    //     // mid 
+    //     int[] s = new int[n.length+m.length];
+    //     int i = 0;
+    //      int j = 0;
+    //      int k = 0;
+    //     while( i <n.length && j<m.length  ){
+    //         if(n[i] < m[j]){
+    //             s[k] = n[i];
+    //             k++;
+    //             i++;
+    //         }else if (n[i] > m [j]){
+    //             s[k] = m[j];
+    //             k++;
+    //             i++;
+    //         }
+    //         while(i<n.length) {
+    //             s[k] = n[i];
+    //             i++;
+    //             k++;
+    //         }
+    //         while(j<m.length) {
+    //             s[k] = n[j];
+    //             j++;
+    //             k++;
+    //         }
+
+    //         if(s.length%2 == 0){
+    //             return ( (double)s[s.length/2] + (double)s[s.length/2-1])/2.0;
+    //         }else{
+    //             return (double) s[s.length/2];
+    //         }
+    //     }
+    // }
+
+
+    public static double midea(int[] n ,  int[]m ){
+        //1234 and 567
+        //take smaller array
+        // binary serarch to that
+        // smaller mid = l+r/2 barrray bmid = (n1+n2)/2 - mid;
+        //bleft, bright, sleft and sright 
+        // bleft = bmid > 0 ? m[mid-1] : -inf
+        // bright = bmid < len ? m[mid] : +inf
+        // sleft = mid > 0 ? m[mid-1] : -inf
+        // sright = mid < len ? m[mid] : +inf
+
+        // bleft <= sright && sleft <=bright
+        // return if()
+        return 0.0;
+    }
+    /*
+     * Given an integer array of size n. Elements of the array is >= 0. Starting from arr[startInd], follow each element to the index it points to. 
+     * Find a cycle and return its length. No cycle is found -> -1. 
+lengthOfCycle([1, 0], 0); // 2 
+lengthOfCycle([1, 2, 0], 0); // 3 
+lengthOfCycle([1, 2, 3, 1], 0); // 3 
+     */
+    public static int arrayCycle(int[] arr, int si){
+        int steps = 0;
+        int curr = si;
+        HashMap<Integer, Integer> hm  = new HashMap<>();
+        while(curr<arr.length && curr >=0){
+            if(hm.containsKey(arr[curr])){
+                return steps - hm.get(curr);
+            }
+            hm.put(arr[curr], steps);
+            steps++;
+            curr = arr[curr];
+        }
+        return -1;
+    }
+
+    
     public static void main(String args[]){
-        int[] num = {1,0,1,1,1};
-
-        System.out.println(search(num, 0));
-
+        
+        
     }
 }

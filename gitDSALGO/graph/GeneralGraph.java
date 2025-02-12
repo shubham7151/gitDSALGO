@@ -6,4 +6,6 @@ public interface GeneralGraph {
 
     public void bfs(int val);
 
+    // public void display();
+
 }
