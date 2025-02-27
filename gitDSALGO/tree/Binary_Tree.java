@@ -95,10 +95,10 @@ public class Binary_Tree {
 
             stack2.push(curr);
             if(curr.right!=null){
-                stack2.push(curr.right);
+                stack1.push(curr.right);
             }
             if(curr.left!=null){
-                stack2.push(curr.left);
+                stack1.push(curr.left);
             }
         }
 

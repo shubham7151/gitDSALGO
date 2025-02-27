@@ -1,6 +1,6 @@
 package gitDSALGO.leetcode;
 
-public class L496 {
+public class L496_Next_Greater_Element_I {
     /*
      * Next Greater Element I
      */
@@ -34,6 +34,10 @@ public class L496 {
         }
         return -1;
      }
+
+    // public int monotonicStack(int[] num2, int k){
+
+    // }
      public static void main(String[] args) {
     
      }
